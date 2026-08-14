@@ -173,7 +173,9 @@ def dashboard_books(df):
                 moyennes, x='note', y='categorie', orientation='h',
                 title='Note moyenne par catégorie (top 15)',
                 labels={'note': 'Note moyenne', 'categorie': ''},
-            ),
+            # plotly empile les barres horizontales de bas en haut : sans cet ordre,
+            # la meilleure catégorie s'afficherait tout en bas du graphique.
+            ).update_yaxes(categoryorder='total ascending'),
             use_container_width=True,
         )
 
