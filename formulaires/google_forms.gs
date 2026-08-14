@@ -47,11 +47,11 @@ function creerFormulaire() {
       .setRequired(true);
 
   // --- Section conditionnelle : precision du role ------------------------- //
-  var pageAutreProfession = form.addPageBreak().setTitle('Précision du rôle');
+  var pageAutreProfession = form.addPageBreakItem().setTitle('Précision du rôle');
   form.addTextItem().setTitle('Autre profession').setRequired(true);
 
   // --- Suite de la section 1 : acces et historique ------------------------ //
-  var pageAcces = form.addPageBreak().setTitle("Accès à l'application");
+  var pageAcces = form.addPageBreakItem().setTitle("Accès à l'application");
   form.addMultipleChoiceItem()
       .setTitle("Comment avez-vous accédé à l'application ?")
       .setChoiceValues(['Ordinateur', 'Tablette', 'Smartphone'])
@@ -61,14 +61,14 @@ function creerFormulaire() {
       .setRequired(true);
 
   // --- Section conditionnelle : frequence d'utilisation ------------------- //
-  var pageFrequence = form.addPageBreak().setTitle("Fréquence d'utilisation");
+  var pageFrequence = form.addPageBreakItem().setTitle("Fréquence d'utilisation");
   form.addMultipleChoiceItem()
       .setTitle("Combien de fois l'avez-vous utilisée auparavant ?")
       .setChoiceValues(['2 à 3 fois', '4 à 5 fois', 'Plus de 5 fois'])
       .setRequired(false);
 
   // --- SECTION 2 : Première impression et interface ----------------------- //
-  var pageInterface = form.addPageBreak()
+  var pageInterface = form.addPageBreakItem()
       .setTitle('SECTION 2 : Première impression et interface');
   ajouterAccord(form, "L'interface est attrayante et bien conçue");
   ajouterAccord(form, "L'application est facile à naviguer");
@@ -77,7 +77,7 @@ function creerFormulaire() {
   ajouterAccord(form, "L'application fonctionne bien sur mon appareil");
 
   // --- SECTION 3 : Fonctionnalités et performances ------------------------ //
-  form.addPageBreak().setTitle('SECTION 3 : Fonctionnalités et performances');
+  form.addPageBreakItem().setTitle('SECTION 3 : Fonctionnalités et performances');
   form.addCheckboxItem()
       .setTitle('Quelles fonctionnalités avez-vous testées ?')
       .setChoiceValues([
@@ -94,13 +94,13 @@ function creerFormulaire() {
   ajouterAccord(form, "Les instructions et l'aide sont claires et utiles");
 
   // --- SECTION 4 : Problèmes rencontrés ----------------------------------- //
-  form.addPageBreak().setTitle('SECTION 4 : Problèmes rencontrés');
+  form.addPageBreakItem().setTitle('SECTION 4 : Problèmes rencontrés');
   var problemes = form.addMultipleChoiceItem()
       .setTitle('Avez-vous rencontré des problèmes ou des erreurs ?')
       .setRequired(true);
 
   // --- Section conditionnelle : detail des problemes ---------------------- //
-  var pageDetailProblemes = form.addPageBreak().setTitle('Détail des problèmes');
+  var pageDetailProblemes = form.addPageBreakItem().setTitle('Détail des problèmes');
   form.addCheckboxItem()
       .setTitle('Quel(s) type(s) de problème(s) ?')
       .setChoiceValues([
@@ -118,7 +118,7 @@ function creerFormulaire() {
       .setRequired(false);
 
   // --- SECTION 5 : Satisfaction globale ----------------------------------- //
-  var pageSatisfaction = form.addPageBreak()
+  var pageSatisfaction = form.addPageBreakItem()
       .setTitle('SECTION 5 : Satisfaction globale');
   form.addScaleItem()
       .setTitle("Note globale de l'application")
@@ -141,7 +141,7 @@ function creerFormulaire() {
       .setRequired(true);
 
   // --- SECTION 6 : Suggestions d'amélioration ----------------------------- //
-  form.addPageBreak().setTitle("SECTION 6 : Suggestions d'amélioration");
+  form.addPageBreakItem().setTitle("SECTION 6 : Suggestions d'amélioration");
   form.addParagraphTextItem()
       .setTitle('Quels sont les principaux points forts de cette application ?')
       .setRequired(true);
