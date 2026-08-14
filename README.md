@@ -5,6 +5,17 @@ d'une application Streamlit.
 
 Master IA — Dakar Institut of Technology.
 
+## Accès rapide
+
+| | Lien |
+|---|---|
+| Application déployée | https://ismbengue.streamlit.app |
+| Formulaire d'évaluation — Kobo | https://ee.kobotoolbox.org/single/bNwGbN3j |
+| Formulaire d'évaluation — Google Forms | https://docs.google.com/forms/d/e/1FAIpQLSehbn0C7JisktD4q4bsO9ytF4ASWoS5_PH9grLf-VmiTmGfzw/viewform |
+
+Les deux formulaires sont également accessibles depuis la page **Évaluation** de
+l'application.
+
 ---
 
 ## Les deux sources
