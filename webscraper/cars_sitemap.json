@@ -1,0 +1,61 @@
+{
+  "_id": "cars_raw",
+  "startUrl": ["https://www.gaaraas.com/fr/users/dakar-auto?page=[1-13]"],
+  "selectors": [
+    {
+      "id": "annonce",
+      "parentSelectors": ["_root"],
+      "type": "SelectorElement",
+      "selector": "a.common-ad-card",
+      "multiple": true
+    },
+    {
+      "id": "titre",
+      "parentSelectors": ["annonce"],
+      "type": "SelectorText",
+      "selector": "h4",
+      "multiple": false,
+      "regex": ""
+    },
+    {
+      "id": "prix",
+      "parentSelectors": ["annonce"],
+      "type": "SelectorText",
+      "selector": ".ad-vehicle-price .value",
+      "multiple": false,
+      "regex": ""
+    },
+    {
+      "id": "kilometrage",
+      "parentSelectors": ["annonce"],
+      "type": "SelectorText",
+      "selector": ".ad-vehicle-mileage .value",
+      "multiple": false,
+      "regex": ""
+    },
+    {
+      "id": "boite_vitesses",
+      "parentSelectors": ["annonce"],
+      "type": "SelectorText",
+      "selector": ".transmission",
+      "multiple": false,
+      "regex": ""
+    },
+    {
+      "id": "region",
+      "parentSelectors": ["annonce"],
+      "type": "SelectorText",
+      "selector": ".location",
+      "multiple": false,
+      "regex": ""
+    },
+    {
+      "id": "lien",
+      "parentSelectors": ["annonce"],
+      "type": "SelectorElementAttribute",
+      "selector": "_parent_",
+      "multiple": false,
+      "extractAttribute": "href"
+    }
+  ]
+}
