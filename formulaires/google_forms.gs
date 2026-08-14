@@ -28,14 +28,9 @@ var ACCORD = [
   "Tout à fait d'accord",
 ];
 
-/** Ajoute une question d'accord (echelle de Likert a 5 niveaux). */
-function ajouterAccord(form, libelle) {
-  form.addMultipleChoiceItem()
-      .setTitle(libelle)
-      .setChoiceValues(ACCORD)
-      .setRequired(true);
-}
-
+// creerFormulaire est volontairement la PREMIERE fonction du fichier : Apps Script
+// preselectionne celle-ci dans le menu deroulant d'execution. Lancer une fonction
+// utilitaire a la place produirait « Cannot read properties of undefined ».
 function creerFormulaire() {
   var form = FormApp.create("Évaluation de l'application web");
   form.setDescription(
@@ -193,4 +188,12 @@ function creerFormulaire() {
 
   Logger.log('Lien de réponse  : ' + form.getPublishedUrl());
   Logger.log("Lien d'édition   : " + form.getEditUrl());
+}
+
+/** Ajoute une question d'accord (echelle de Likert a 5 niveaux). */
+function ajouterAccord(form, libelle) {
+  form.addMultipleChoiceItem()
+      .setTitle(libelle)
+      .setChoiceValues(ACCORD)
+      .setRequired(true);
 }
