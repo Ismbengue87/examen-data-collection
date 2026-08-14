@@ -41,10 +41,6 @@ l'application.
 │   ├── driver.py       fabrique du navigateur Chrome (local et Streamlit Cloud)
 │   ├── books.py        source 1 — Selenium, avec nettoyage
 │   └── cars.py         source 2 — Selenium, avec nettoyage
-├── webscraper/         sitemaps à importer dans l'extension Web Scraper
-├── formulaires/
-│   ├── generer_xlsform.py   génère le XLSForm à téléverser sur Kobo
-│   └── google_forms.gs      script Apps Script qui crée le formulaire Google
 ├── data/
 │   ├── collecte.db     base SQLite (4 tables)
 │   └── raw/            CSV bruts exportés depuis l'extension Web Scraper
@@ -180,31 +176,31 @@ nombre de pages volontairement limité.
 
 ---
 
-## Scraping no-code — extension Web Scraper
+## Scraping no-code
 
-Les deux sitemaps du dossier `webscraper/` s'importent directement dans l'extension
-Chrome (onglet *Web Scraper* → *Create new sitemap* → *Import sitemap*), puis
-*Scrape* et *Export data as CSV*. Les CSV obtenus se placent dans `data/raw/` sous
-les noms `books_raw.csv` et `cars_raw.csv`, et `python import_raw.py` les charge en base.
+Les données brutes des deux sources ont été collectées avec l'extension Chrome
+**Web Scraper**, puis exportées en CSV et déposées dans `data/raw/` sous les noms
+`books_raw.csv` et `cars_raw.csv`. La commande `python import_raw.py` les charge
+dans la base.
 
-Aucun nettoyage n'est appliqué : c'est le principe de cette partie, et la comparaison
-avec les tables `*_clean` montre concrètement ce que le nettoyage Selenium apporte.
+Aucun nettoyage n'est appliqué, c'est le principe de cette partie : les prix
+gardent leur symbole, les titres ne sont pas découpés, et les colonnes techniques
+de l'outil sont conservées. La comparaison avec les tables `*_clean` montre
+concrètement ce que le nettoyage Selenium apporte.
 
 ## Formulaires d'évaluation
 
-Les deux formulaires reprennent les mêmes 6 sections et les mêmes questions.
+Le questionnaire existe en deux versions, l'une sur Kobo Toolbox et l'autre sur
+Google Forms. Toutes deux reprennent les mêmes 6 sections et les mêmes questions,
+avec les 4 logiques conditionnelles demandées : précision du rôle, fréquence
+d'utilisation, et le détail des problèmes rencontrés.
 
-- **Kobo** : `python formulaires/generer_xlsform.py` produit `formulaire_kobo.xlsx`,
-  à téléverser dans Kobo (*New project* → *Import an XLSForm*). Les 4 logiques
-  conditionnelles utilisent la colonne `relevant`, et le niveau de satisfaction est
-  un champ `calculate`.
-- **Google Forms** : le script `formulaires/google_forms.gs` se colle dans
-  [script.google.com](https://script.google.com) et crée le formulaire complet.
-  Les 4 logiques conditionnelles y sont reproduites par la navigation entre sections.
+Une différence est à noter. La question « Niveau de satisfaction » est **calculée**
+à partir de la note globale. Kobo le gère nativement avec un champ de type
+`calculate`. Google Forms ne dispose pas de champ calculé : sur cette version, la
+note globale est saisie seule, sans niveau dérivé. Les logiques conditionnelles y
+sont reproduites par la navigation entre sections plutôt que par affichage
+dynamique.
 
-Une différence est à noter : la question « Niveau de satisfaction » est un champ
-**calculé** à partir de la note globale. Kobo le gère nativement (type `calculate`).
-Google Forms ne dispose pas de champ calculé — sur cette version, la note globale
-est saisie seule, sans niveau dérivé.
-
-Les liens des deux formulaires se renseignent dans `config.py`.
+Les liens des deux formulaires sont renseignés dans `config.py` et exposés par la
+page **Évaluation** de l'application.

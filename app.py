@@ -17,7 +17,11 @@ import streamlit as st
 import db
 from config import LIEN_GOOGLE_FORMS, LIEN_KOBO, SOURCES
 
-st.set_page_config(page_title='Data Collection — Examen', page_icon='📊', layout='wide')
+st.set_page_config(
+    page_title='Data Collection — Examen',
+    page_icon=':material/bar_chart:',
+    layout='wide',
+)
 
 DOSSIER_BRUT = Path(__file__).parent / 'data' / 'raw'
 
@@ -32,7 +36,7 @@ def charger(table):
 # --------------------------------------------------------------------------- #
 
 def page_accueil():
-    st.title('📊 Collecte de données par web scraping')
+    st.title(':material/bar_chart: Collecte de données par web scraping')
     st.caption('Projet d\'examen — Master IA, Dakar Institut of Technology')
 
     st.markdown(
@@ -67,7 +71,7 @@ def page_accueil():
 
 
 def page_scraping():
-    st.title('🔎 Scraping live')
+    st.title(':material/search: Scraping live')
     st.markdown(
         'Lance une collecte **en direct** avec Selenium. Le nombre de pages est limité '
         'pour garder un temps de réponse raisonnable : la collecte complète a été faite '
@@ -89,7 +93,7 @@ def page_scraping():
         barre = st.progress(0.0, text='Ouverture du navigateur…')
 
         def avancement(n, total):
-            barre.progress(n / total, text=f'{n}/{total}')
+            barre.progress(n / total, text=f'page {n}/{total}')
 
         try:
             if cle == 'books':
@@ -98,10 +102,9 @@ def page_scraping():
                 from scrapers.cars import scraper
 
             with st.spinner('Collecte en cours…'):
-                data = scraper(nb_pages, avancement)
+                df = scraper(nb_pages, avancement)
 
             barre.empty()
-            df = pd.DataFrame(data)
             st.success(f'{len(df)} lignes collectées et nettoyées.')
             st.dataframe(df, use_container_width=True)
             st.download_button(
@@ -116,7 +119,7 @@ def page_scraping():
 
 
 def page_donnees_brutes():
-    st.title('📁 Données brutes — scraping no-code')
+    st.title(':material/folder: Données brutes — scraping no-code')
     st.markdown(
         'Ces fichiers proviennent de l\'extension Chrome **Web Scraper**. Ils sont '
         'volontairement **non nettoyés** : prix avec symboles, textes non découpés, '
@@ -227,7 +230,7 @@ def dashboard_cars(df):
 
 
 def page_dashboard():
-    st.title('📈 Dashboard — données nettoyées')
+    st.title(':material/monitoring: Dashboard — données nettoyées')
 
     cle = st.radio(
         'Source', list(SOURCES), format_func=lambda c: SOURCES[c]['nom'], horizontal=True
@@ -245,7 +248,7 @@ def page_dashboard():
 
 
 def page_evaluation():
-    st.title('📝 Évaluer l\'application')
+    st.title(':material/rate_review: Évaluer l\'application')
     st.markdown(
         'Votre retour permet d\'améliorer l\'application. Le questionnaire est '
         'disponible sur deux plateformes, au choix — les questions sont identiques.'
