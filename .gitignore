@@ -2,5 +2,6 @@
 __pycache__/
 *.pyc
 .DS_Store
+.Rhistory
 .claude/
 plan_video.md
